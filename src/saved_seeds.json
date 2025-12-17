@@ -1,0 +1,113 @@
+{
+    "seeds": {
+        "lol": {
+            "players": {
+                "player1": {
+                    "balance": 100,
+                    "name": "Alice"
+                },
+                "player2": {
+                    "balance": 200,
+                    "name": "Jhon"
+                }
+            },
+            "gooses": {
+                "goose1": {
+                    "name": "MJ",
+                    "type": "WarGoose"
+                }
+            },
+            "seed": "2341"
+        },
+        "save1": {
+            "players": {
+                "player1": {
+                    "balance": 0,
+                    "name": "jh"
+                },
+                "player2": {
+                    "balance": 0,
+                    "name": "lh"
+                }
+            },
+            "gooses": {
+                "goose1": {
+                    "name": "W",
+                    "type": "WarGoose"
+                },
+                "goose2": {
+                    "name": "gg",
+                    "type": "HonkGoose"
+                }
+            },
+            "flockes": {},
+            "seed": "3816"
+        },
+        "save52": {
+            "players": {
+                "player1": {
+                    "balance": 200,
+                    "name": "Gang"
+                },
+                "player2": {
+                    "balance": 500,
+                    "name": "Hooo"
+                }
+            },
+            "gooses": {
+                "goose1": {
+                    "name": "War",
+                    "type": "WarGoose"
+                },
+                "goose2": {
+                    "name": "Hoo",
+                    "type": "HonkGoose"
+                }
+            },
+            "flockes": {},
+            "seed": "4180"
+        },
+        "megatest": {
+            "players": {
+                "player1": {
+                    "balance": 500,
+                    "name": "Alice"
+                },
+                "player2": {
+                    "balance": 200,
+                    "name": "Jonny"
+                }
+            },
+            "gooses": {
+                "goose1": {
+                    "name": "gg",
+                    "type": "WarGoose"
+                },
+                "goose2": {
+                    "name": "teeed",
+                    "type": "HonkGoose"
+                }
+            },
+            "seed": "4330"
+        },
+        "Gaddamn": {
+            "players": {
+                "player1": {
+                    "balance": 500,
+                    "name": "Alice"
+                },
+                "player2": {
+                    "balance": 200,
+                    "name": "Jhon"
+                }
+            },
+            "gooses": {
+                "goose1": {
+                    "name": "HEll",
+                    "type": "HonkGoose"
+                }
+            },
+            "seed": "4995"
+        }
+    }
+}
