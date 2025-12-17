@@ -3,8 +3,8 @@ from src.classes.ChipClass import Chip
 
 class ChipCollection:
 
-    def __init__(self) -> None:
-        self.chips = []
+    def __init__(self, chips=[]) -> None:  # ОШИБКА №5: Изменяемое значение по умолчанию
+        self.chips = chips
 
     @property
     def summary_value(self):

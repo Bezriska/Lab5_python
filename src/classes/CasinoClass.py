@@ -30,11 +30,11 @@ class Casino:
             return
 
     def goose_registry(self, type: str, name: str, balance: int = 0):
-        if type == "Goose":
+        if type is "Goose":  # ОШИБКА №3: Сравнение через is вместо ==
             self.goose_collection.add_goose(Goose(name, balance))
-        elif type == "WarGoose":
+        elif type is "WarGoose":  # ОШИБКА №3: Сравнение через is вместо ==
             self.goose_collection.add_goose(WarGoose(name, balance))
-        elif type == "HonkGoose":
+        elif type is "HonkGoose":  # ОШИБКА №3: Сравнение через is вместо ==
             self.goose_collection.add_goose(HonkGoose(name, balance))
         else:
             raise TypeError("Incorrect type of goose")
@@ -62,7 +62,7 @@ class Casino:
         chips = []
         value = int(value)
 
-        if value < 5:
+        if value <= 5:  # ОШИБКА №2: Off-by-one - исключает значение 5
             return chips
 
         for chip_value in ALLOWED_CHIPS_VALUES[::-1]:
@@ -108,7 +108,7 @@ class Casino:
 
         if action == "bet":
 
-            for player in list(self.player_collection.players.values()):
+            for player in self.player_collection.players.values():  # ОШИБКА №1: Изменение коллекции во время итерации
 
                 if player.panic_ind >= 92:
                     player.chips_col.chips = []
@@ -253,28 +253,3 @@ class Casino:
             print("ВЫИГРАЛИ ГУСИ")
 
 
-# cas = Casino()
-
-# cas.player_registry("Jhon", 250)
-# print(cas.player_collection["Jhon"].chips_col.chips)
-# cas.player_collection["Jhon"].chips_col.add_chip(Chip(500))
-# cas.player_registry("Alice")
-# cas.player_collection["Alice"].chips_col.add_chip(Chip(200))
-# cas.goose_registry("WarGoose", "MJ")
-# cas.goose_registry("WarGoose", "LBJ")
-
-
-# print(
-#     f"Игрок Jhon, баланс:{cas.player_collection["Jhon"].balance} Фишки: {cas.player_collection["Jhon"].chips_col.chips}")
-# print(
-#     f"Игрок Alice, баланс:{cas.player_collection["Alice"].balance} Фишки: {cas.player_collection["Alice"].chips_col.chips}")
-# print(f"Стаи: {cas.goose_collection.flockes}, баланс: {cas.goose_collection.summary_goose_balance}")
-
-# cas.sim_step()
-# print(
-#     f"Игрок Jhon, баланс:{cas.player_collection["Jhon"].balance}\nФишки: {cas.player_collection["Jhon"].chips_col.chips}\n")
-# print(
-#     f"Игрок Alice, баланс:{cas.player_collection["Alice"].balance}\nФишки: {cas.player_collection["Alice"].chips_col.chips}")
-
-# print("Баланс казино: ", cas.summary_players_balance)
-# print("Баланс гусей:", cas.goose_collection.summary_goose_balance)

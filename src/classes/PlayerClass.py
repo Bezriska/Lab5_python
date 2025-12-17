@@ -12,7 +12,7 @@ class Player:
 
     @property
     def balance(self):
-        return self.chips_col.summary_value
+        return self.chips_col.summary_val
 
     def __repr__(self):
         return f"Player(name = {self.name}, balance = {self.balance})"
@@ -28,15 +28,3 @@ class Player:
     def clean_chips(self):
         self.chips_col.chips = []
 
-
-# chip_col = ChipCollection()
-# player = Player("Max")
-
-# player.chips_col.add_chip(Chip(10))
-# player.chips_col.add_chip(Chip(25))
-
-# print(player.chips_col)
-
-# print(player.make_bet())
-
-# print(player.chips_col)
