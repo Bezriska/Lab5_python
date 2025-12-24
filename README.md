@@ -38,12 +38,7 @@
 
 **Местоположение:** `CasinoClass.py`, метод `sim_step()`, строка ~113
 
-**Проблемный код:**
-```python
-for player in self.player_collection.players.values():  # ОШИБКА!
-    if player.panic_ind > 92:
-        self.player_lose(player.name)  # Изменяет словарь во время итерации
-```
+![Проблемный код](screenshots/Снимок%20экрана%202025-12-24%20в%2018.19.27.png)
 
 **Описание:**  
 При обработке ставок происходит итерация по словарю игроков (`players.values()`), но внутри цикла может вызываться метод `player_lose()`, который удаляет игрока из этого же словаря. Изменение размера словаря во время итерации приводит к RuntimeError.
@@ -61,7 +56,7 @@ RuntimeError: dictionary changed size during iteration
 
 **Отладка в VS Code:**
 1. Откройте [CasinoClass.py](src/classes/CasinoClass.py#L113)
-2. Поставьте breakpoint на строке `for player in ...`
+2. Поставьте breakpoint на 111 строке `for player in ...`
 3. Запустите отладку (F5)
 4. Пошагово (F10) дойдите до вызова `self.player_lose()`
 5. В панели **Variables** наблюдайте за `self.player_collection.players`
@@ -85,15 +80,7 @@ for player in list(self.player_collection.players.values()):
 
 **Местоположение:** `CasinoClass.py`, метод `lay_out_for_chips()`, строка ~64
 
-**Проблемный код:**
-```python
-def lay_out_for_chips(self, value):
-    chips = []
-    value = int(value)
-    
-    if value <= 5:  # ОШИБКА! Исключает значение 5
-        return chips
-```
+![Проблемный код](screenshots/Снимок%20экрана%202025-12-24%20в%2018.23.00.png)
 
 **Описание:**  
 Используется условие `if value <= 5`, которое исключает возможность создания фишки при балансе ровно 5. Минимальный номинал фишки равен 5 (`ALLOWED_CHIPS_VALUES[0]`), поэтому баланс 5 должен конвертироваться в одну фишку номиналом 5.
@@ -110,7 +97,7 @@ def lay_out_for_chips(self, value):
 
 **Отладка в VS Code:**
 1. Откройте [CasinoClass.py](src/classes/CasinoClass.py#L64)
-2. Поставьте breakpoint на строке `if value <= 5:`
+2. Поставьте breakpoint на 65 строке `if value <= 5:`
 3. Запустите тест с аргументом value=5
 4. В **Debug Console** проверьте:
    - `value <= 5` → True (попадаем в условие)
@@ -136,13 +123,7 @@ if value < ALLOWED_CHIPS_VALUES[0]:
 **Описание:**  
 Оператор `is` сравнивает идентичность объектов (их адреса в памяти), а не значения. Для сравнения значений строк, чисел и других объектов нужно использовать `==`.
 
-**Проблемный код:**
-```python
-# Пример ошибки
-def goose_registry(self, type: str, name: str, balance: int = 0):
-    if type is "Goose":  # ОШИБКА!
-        self.goose_collection.add_goose(Goose(name, balance))
-```
+![Проблемный код](screenshots/Снимок%20экрана%202025-12-24%20в%2018.26.11.png)
 
 **Симптомы:**
 - Код может работать с литералами благодаря интернированию строк в Python
@@ -190,13 +171,7 @@ if value == None:  # Работает, но не идиоматично
 **Описание:**  
 Использование неправильного оператора сравнения (`>` вместо `>=`, `<` вместо `<=`) приводит к пропуску граничных значений.
 
-**Проблемный код:**
-```python
-# CasinoClass.py, метод sim_step
-if player.panic_ind > 92:  # ОШИБКА! Пропускает значение 92
-    player.chips_col.chips = []
-    self.player_lose(player.name)
-```
+![Проблемный код](screenshots/Снимок%20экрана%202025-12-24%20в%2018.30.43.png)
 
 **Симптомы:**
 - Игрок с `panic_ind = 91` → не удаляется (правильно)
@@ -248,13 +223,7 @@ if self.player_collection.summary_balance >= 5000:
 **Описание:**  
 Если в параметрах функции или метода используется изменяемый объект (список, словарь) как значение по умолчанию, этот объект создается один раз при определении функции и используется повторно при всех вызовах.
 
-**Проблемный код:**
-```python
-# Пример ошибки
-def add_chip(self, chips=[]):  # ОШИБКА! Список общий для всех вызовов
-    chips.append(Chip(10))
-    return chips
-```
+![Проблемный код](screenshots/Снимок%20экрана%202025-12-24%20в%2018.32.43.png)
 
 **Симптомы:**
 ```python
@@ -298,12 +267,7 @@ def add_chip(self, chips=None):
 
 **Местоположение:** `PlayerClass.py`, метод `balance` (property), строка ~15
 
-**Проблемный код:**
-```python
-@property
-def balance(self):
-    return self.chips_col.summary_val  # ОШИБКА! Должно быть summary_value
-```
+![Проблемный код](screenshots/Снимок%20экрана%202025-12-24%20в%2018.34.17.png)
 
 **Описание:**  
 В классе `Player` свойство `balance` обращается к несуществующему атрибуту `summary_val` объекта `ChipCollection`. Правильное имя атрибута — `summary_value`. Это приводит к AttributeError при любой попытке получить баланс игрока.
@@ -332,7 +296,7 @@ balance = player.balance  # AttributeError
 
 **Отладка в VS Code:**
 1. Откройте [PlayerClass.py](src/classes/PlayerClass.py#L15)
-2. Поставьте breakpoint на строке `return self.chips_col.summary_val`
+2. Поставьте breakpoint на 15 строке `return self.chips_col.summary_val`
 3. Запустите тест
 4. Выполните Step Into (F11) на этой строке
 5. В **Debug Console** проверьте:

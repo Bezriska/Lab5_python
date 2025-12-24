@@ -15,6 +15,7 @@ from src.classes.CasinoClass import Casino
 #         casino.player_lose(player.name)
 
 # Вторая ошибка при добавлении баланса равного 5 - возвращается пустой список
+# Точка остановы на 23 строке
 
 # casino = Casino()
     

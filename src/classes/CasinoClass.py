@@ -62,7 +62,7 @@ class Casino:
         chips = []
         value = int(value)
 
-        if value <= 5:  # ОШИБКА №2: Off-by-one - исключает значение 5
+        if value <= 5:  # ОШИБКА №2: исключает значение 5
             return chips
 
         for chip_value in ALLOWED_CHIPS_VALUES[::-1]:
